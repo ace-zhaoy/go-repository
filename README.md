@@ -31,3 +31,5 @@
     因为不同库返回的错误并不一致，比如 gorm 返回 `gorm.ErrRecordNotFound`， mongo 返回 `mongo.ErrNoDocuments`。
     如果使用各自的 err 判断，切库就存在漏判风险。<br>
     > 业务错误建议使用 [errors](https://github.com/ace-zhaoy/errors)，支持错误码、栈信息、便捷的错误检查与处理
+
+> 默认使用的 Collection、Dict 是无锁的（非并发安全），若需要并发安全，可以调用 Safe(true)，将返回带“读写锁”的对象

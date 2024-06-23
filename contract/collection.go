@@ -1,7 +1,7 @@
 package contract
 
 type Collection[ID comparable, T ENTITY[ID]] interface {
-	Clone() Collection[ID, ENTITY[ID]]
+	Clone() Collection[ID, T]
 	All() []T
 	Count() int
 	CountBy(fn func(T) bool) int
@@ -20,9 +20,13 @@ type Collection[ID comparable, T ENTITY[ID]] interface {
 	Intersect(Collection[ID, T]) Collection[ID, T]
 	Difference(Collection[ID, T]) Collection[ID, T]
 	Union(Collection[ID, T]) Collection[ID, T]
-	Unique(Collection[ID, T]) Collection[ID, T]
+	Unique() Collection[ID, T]
 	Reverse() Collection[ID, T]
-	Push(T)
-	Pop() T
+	Append(T)
+	LPush(T)
+	LPop() T
+	RPush(T)
+	RPop() T
 	ToDict() Dict[ID, T]
+	Safe(safe bool) Collection[ID, T]
 }

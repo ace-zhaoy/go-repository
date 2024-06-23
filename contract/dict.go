@@ -18,4 +18,5 @@ type Dict[K comparable, V any] interface {
 	Clear()
 	All() map[K]V
 	Clone() Dict[K, V]
+	Safe(safe bool) Dict[K, V]
 }
