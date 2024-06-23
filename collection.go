@@ -3,12 +3,10 @@ package repository
 import (
 	"github.com/ace-zhaoy/go-repository/contract"
 	"sort"
-	"sync"
 )
 
 type Collection[ID comparable, T contract.ENTITY[ID]] struct {
-	s  []T
-	mu sync.RWMutex
+	s []T
 }
 
 var _ contract.Collection[int64, contract.ENTITY[int64]] = (*Collection[int64, contract.ENTITY[int64]])(nil)
