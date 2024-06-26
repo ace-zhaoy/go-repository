@@ -13,7 +13,7 @@
 
 # 约定
 1. ### ID 命名
-    建议 SQL 数据库使用 `id` 作为主键， MongoDB 使用 `_id` 作为主键
+    建议 结构体中字段使用`ID`，SQL 数据库使用 `id` 作为主键， MongoDB 使用 `_id` 作为主键
 
 2. ### 使用分布式 ID 生成
     建议使用 [go-id](https://github.com/ace-zhaoy/go-id)生成 int64 的 ID， 而不是使用 MySQL 的主键自增或 Mongo 的 ObjectId。

@@ -20,6 +20,12 @@ func NewDict[K comparable, V any](m map[K]V) *Dict[K, V] {
 	}
 }
 
+func NewDictWithSize[K comparable, V any](size int) *Dict[K, V] {
+	return &Dict[K, V]{
+		m: make(map[K]V, size),
+	}
+}
+
 func (d *Dict[K, V]) KeyExists(key K) bool {
 	_, ok := d.m[key]
 	return ok
