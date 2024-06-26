@@ -33,3 +33,7 @@
     > 业务错误建议使用 [errors](https://github.com/ace-zhaoy/errors)，支持错误码、栈信息、便捷的错误检查与处理
 
 > 默认使用的 Collection、Dict 是无锁的（非并发安全），若需要并发安全，可以调用 Safe(true)，将返回带“读写锁”的对象
+
+# 支持的 Repository 仓库
+1. https://github.com/ace-zhaoy/go-repository-mongo
+2. https://github.com/ace-zhaoy/go-repository-gorm
