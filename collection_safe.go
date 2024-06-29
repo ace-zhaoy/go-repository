@@ -78,6 +78,24 @@ func (c *CollectionSafe[ID, T]) IDsBy(fn func(T) bool) []ID {
 	return c.c.IDsBy(fn)
 }
 
+func (c *CollectionSafe[ID, T]) Get(id ID) T {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+	return c.c.Get(id)
+}
+
+func (c *CollectionSafe[ID, T]) GetBy(fn func(T) bool) contract.Collection[ID, T] {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+	return NewCollectionSafe(c.c.GetBy(fn))
+}
+
+func (c *CollectionSafe[ID, T]) GetOneBy(fn func(T) bool) T {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+	return c.c.GetOneBy(fn)
+}
+
 func (c *CollectionSafe[ID, T]) Chunk(size int) []contract.Collection[ID, T] {
 	c.mu.RLock()
 	defer c.mu.RUnlock()

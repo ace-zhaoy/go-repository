@@ -11,6 +11,9 @@ type Collection[ID comparable, T ENTITY[ID]] interface {
 	IsEmpty() bool
 	IDs() []ID
 	IDsBy(fn func(T) bool) []ID
+	Get(id ID) T
+	GetBy(fn func(T) bool) Collection[ID, T]
+	GetOneBy(fn func(T) bool) T
 	Chunk(size int) []Collection[ID, T]
 	Sort(fn func(T, T) bool)
 	ForEach(fn func(T))

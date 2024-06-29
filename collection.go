@@ -97,6 +97,36 @@ func (c *Collection[ID, T]) IDsBy(fn func(T) bool) []ID {
 	return ids
 }
 
+func (c *Collection[ID, T]) Get(id ID) T {
+	for i := range c.s {
+		if c.s[i].GetID() == id {
+			return c.s[i]
+		}
+	}
+	var defaultValue T
+	return defaultValue
+}
+
+func (c *Collection[ID, T]) GetBy(fn func(T) bool) contract.Collection[ID, T] {
+	s := make([]T, 0)
+	for i := range c.s {
+		if fn(c.s[i]) {
+			s = append(s, c.s[i])
+		}
+	}
+	return NewCollection[ID, T](s)
+}
+
+func (c *Collection[ID, T]) GetOneBy(fn func(T) bool) T {
+	for i := range c.s {
+		if fn(c.s[i]) {
+			return c.s[i]
+		}
+	}
+	var defaultValue T
+	return defaultValue
+}
+
 func (c *Collection[ID, T]) Chunk(size int) []contract.Collection[ID, T] {
 	if size <= 0 {
 		return nil
