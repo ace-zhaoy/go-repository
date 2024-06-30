@@ -3,6 +3,7 @@ package contract
 import "context"
 
 type CrudRepository[ID comparable, T ENTITY[ID]] interface {
+	IsUnscoped() bool
 	Unscoped() CrudRepository[ID, T]
 	IDField() string
 	SoftDeleteField() string
