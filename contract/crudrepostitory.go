@@ -14,6 +14,7 @@ type CrudRepository[ID comparable, T ENTITY[ID]] interface {
 	FindByIDs(ctx context.Context, ids []ID) (collection Collection[ID, T], err error)
 	FindByPage(ctx context.Context, limit, offset int, orders ...Order) (collection Collection[ID, T], err error)
 	FindByFilter(ctx context.Context, filter map[string]any) (collection Collection[ID, T], err error)
+	FindByFilterWithSort(ctx context.Context, filter map[string]any, orders ...Order) (collection Collection[ID, T], err error)
 	FindByFilterWithPage(ctx context.Context, filter map[string]any, limit, offset int, orders ...Order) (collection Collection[ID, T], err error)
 	FindAll(ctx context.Context) (collection Collection[ID, T], err error)
 	Count(ctx context.Context) (count int, err error)
