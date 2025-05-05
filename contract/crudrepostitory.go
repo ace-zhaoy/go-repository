@@ -10,6 +10,7 @@ type CrudRepository[ID comparable, T ENTITY[ID]] interface {
 	SoftDeleteEnabled() bool
 	Create(ctx context.Context, entity T) (id ID, err error)
 	FindOne(ctx context.Context, filter map[string]any, orders ...Order) (entity T, err error)
+	FindOneWithExists(ctx context.Context, filter map[string]any, orders ...Order) (entity T, exists bool, err error)
 	FindByID(ctx context.Context, id ID) (entity T, err error)
 	FindByIDs(ctx context.Context, ids []ID) (collection Collection[ID, T], err error)
 	FindByPage(ctx context.Context, limit, offset int, orders ...Order) (collection Collection[ID, T], err error)
